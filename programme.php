@@ -34,71 +34,72 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="index.php">Accueil</a></li>
                     <li><a href="programme.php" class="smoothscroll">Programme</a></li>
-                    <li><a href="nouveau.php" class="smoothscroll">Nouveau</a></li>
+                    <li><a href="back/nouveau.php" class="smoothscroll">Nouveau</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="container">
-    <div class=" centered mt mb">
-        <h1>Tous les programmes</h1>
-        <?php
+        <div class=" centered mt mb">
+            <h1>Tous les programmes</h1>
+            <?php
 
-        /**
-         * accéder la connexion à la base de donnée
-         */
-        include_once "back/connexion.php";
+            /**
+             * accéder la connexion à la base de donnée
+             */
+            include_once "back/connexion.php";
 
-        /**
-         * sélecte tous les informations à l'événemment
-         */
-        $_rv_info = $connexion->query("SELECT * FROM information ORDER BY datei");
+            /**
+             * sélecte tous les informations à l'événemment
+             */
+            $_rv_info = $connexion->query("SELECT * FROM information ORDER BY datei");
 
-        /**
-         * afficher tous les contenus de l'événemment
-         */
-        while ( $_rv_list_info = mysqli_fetch_array( $_rv_info ) ) {
-            echo "
-            <div class=\"col-lg-4 col-md-4 col-sm-4\">
-                <div class=\"card\">
-                    <div class='card-img'>
-                      <img src='http://placeimg.com/640/320/nature/grayscale' class='img-responsive'>
-                      <div class='card-caption'>
-                          <span class='h2'>
-                            " .$_rv_list_info['typei']. " de <strong>" .$_rv_list_info['nom_artist']. "</strong>
-                          </span>
-                      </div>
-                    </div>
-                    <div class='card-body'>
-                      <ul class='details'>
-                        <li class='details_lieu'>Lieu: " .$_rv_list_info['lieu']. "</li>
-                        <li>Date: " .$_rv_list_info['datei']. "</li>
-                        <li>heure: " .$_rv_list_info['heure']. "</li>
-                      </ul>
-                      <table class='table'>
-                          <tr><td>Prix d'entrée</td><td class='price'>" .$_rv_list_info['prix']. " Ariary</td></tr>
-                      </table>
-                      <a href='#' class='btn btn-lg btn-block rv-reserver'>
-                          Réserver une place
-                      </a>
-                      <br>
-                    </div>
-                </div>
-            </div>
-          ";
-        }
+            /**
+             * afficher tous les contenus de l'événemment
+             */
 
-        $_rv_info->close();
+                echo "
+                <table class='table col-10 center table-bordered vt-table'>
+                     <thead>
+                         <tr>
+                            <th>Id</th>
+                            <th>Artist</th>
+                            <th>Lieu</th>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>prix d'éntrée( en Ariary)</th>
+                            <th>Réserver</th>
+                         </tr>
+                     </thead>";
+                     while ( $_rv_list_info = mysqli_fetch_array( $_rv_info ) ) {
+                         echo "
+                         <tbody>
+                            <td class='list'>" .$_rv_list_info['id_info']. "</td>    
+                            <td class='list'>" .$_rv_list_info['nom_artist']. "</td>
+                            <td class='list'>" .$_rv_list_info['lieu']. "</td>
+                            <td class='list'>" .$_rv_list_info['datei']. "</td>
+                            <td class='list'>" .$_rv_list_info['heure']. "</td>
+                            <td class='list'>" .$_rv_list_info['prix']. "</td>
+                            <td>
+                                <a href='#' class='btn btn-sm rv-reserver'>
+                                  Réserver une place
+                                </a>
+                            </td>
+                         </tbody>
+                         ";
+                     }
+                 echo "</table>";
+            $_rv_info->close();
 
-        /**
-         * close la connexion
-         */
-        $connexion->close();
+            /**
+             * close la connexion
+             */
+            $connexion->close();
         ?>
 
+        </div>
     </div>
-</div>
 
 <!-- Liens JavaScript -->
 <script src="lib/jquery/jquery.min.js"></script>

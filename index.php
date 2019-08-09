@@ -34,7 +34,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="index.php">Accueil</a></li>
           <li><a href="programme.php" class="smoothscroll">Programme</a></li>
-          <li><a href="nouveau.php" class="smoothscroll">Nouveau</a></li>
+          <li><a href="back/nouveau.php" class="smoothscroll">Nouveau</a></li>
         </ul>
       </div>
     </div>
@@ -70,7 +70,7 @@
       $_rv_info = $connexion->query("SELECT * FROM information");
 
       /**
-       * afficher tous les contenus de l'événemment
+       * afficher l'événemment
        */
       while ( $_rv_list_info = mysqli_fetch_array( $_rv_info ) ) {
           echo "
@@ -84,6 +84,16 @@
                             " .$_rv_list_info['lieu']. " 
                           </span>
                       </div>
+                    </div>
+                    <div class='card-body'>
+                          <ul class='details'>
+                            <li>Date: " .$_rv_list_info['datei']. "</li>
+                            <li>heure: " .$_rv_list_info['heure']. "</li>
+                          </ul>
+                          <table class='table'>
+                              <tr><td>Prix d'entrée</td><td class='price'>" .$_rv_list_info['prix']. " Ariary</td></tr>
+                          </table>
+                          <br>
                     </div>
                 </div>
             </div>
@@ -122,7 +132,6 @@
         <div class="col-lg-2">
           <a href="#"><i class="fa fa-tumblr"></i></a>
         </div>
-
       </div>
     </div>
   </div>

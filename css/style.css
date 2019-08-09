@@ -156,7 +156,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-left: 10px;
 }
 
-/* Gallery */
 .gallery {
 	margin-top: 30px;
 }
@@ -165,8 +164,11 @@ h1, h2, h3, h4, h5, h6 {
 	opacity: 0.4;
 }
 
-.rv-reserver{
+.form-group {
+    margin: 6% 0% -4% 7%;
+}
+
+.rv-envoyer, .rv-annuler, .rv-reserver {
     background-color: #16a085;
     color: white;
 }
-
