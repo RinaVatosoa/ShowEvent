@@ -17,28 +17,28 @@
 
 <body>
 
-  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        <a class="navbar-brand" href="index.php">
-          Tana show
-        </a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="index.php">Accueil</a></li>
-          <li><a href="programme.php" class="smoothscroll">Programme</a></li>
-          <li><a href="back/nouveau.php" class="smoothscroll">Nouveau</a></li>
-        </ul>
-      </div>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.php">
+                    Tana show
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="index.php">Accueil</a></li>
+                    <li><a href="programme.php" class="smoothscroll">Programme</a></li>
+                    <li><a href="back/nouveau.php" class="smoothscroll">Nouveau</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 
   <div id="headerwrap">
     <div class="container">
@@ -105,7 +105,7 @@
       /**
        * close la connexion
        */
-      $connexion->close();
+      mysqli_close($connexion);
       ?>
 
     </div>

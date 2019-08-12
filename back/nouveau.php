@@ -15,7 +15,6 @@
     <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -109,19 +108,39 @@
             $_rv_heure = $_POST['heure'];
             $_rv_prix = $_POST['prix'];
             $_rv_type = $_POST['type'];
+            $_rv_prix = (int)$_rv_prix;
+
+            function validateDate($date, $format = 'Y-d-m H:i:s')
+            {
+                $d = DateTime::createFromFormat($format, $date);
+                return $d && $d->format($format) == $date;
+            }
 
             /**
              * insérer les données dans la base de données
              */
-            $sql = "INSERT INTO information (id_info, nom_artist, lieu, datei, heure, prix, typei)
+            if ( !empty($_rv_nom) &&  !empty($_rv_lieu) &&  validateDate($_rv_date, 'Y-m-d') &&
+            validateDate($_rv_heure, 'H:i') && !is_null($_rv_prix) && !empty($_rv_type)) {
+
+                $sql = "INSERT INTO information (id_info, nom_artist, lieu, datei, heure, prix, typei)
                         VALUES ('', '$_rv_nom', '$_rv_lieu', '$_rv_date', '$_rv_heure','$_rv_prix', '$_rv_type')";
 
-            if ($connexion->query($sql) === TRUE) {
-                echo "Nouvelle information insérée". "<br/> Cliquer <a href='../index.php'>ici</a> pour revenir à la page d'accueil";
-                exit();
+                if ($connexion->query($sql) === TRUE) {
+                    echo "Nouvelle information insérée". "<br/> Cliquer <a href='../index.php'>ici</a> pour revenir à la page d'accueil";
+                    exit();
+                } else {
+                    echo "Error: " . $sql . "<br>" . $connexion->error;
+                }
             } else {
-                echo "Error: " . $sql . "<br>" . $connexion->error;
+                echo " Erreur de typage de donnée";
+                var_dump(is_string($_rv_nom));
+                var_dump(validateDate($_rv_heure, 'H:i'));
+                var_dump(validateDate($_rv_date, 'Y-m-d'));
+                var_dump( is_string($_rv_lieu));
+                var_dump(is_int($_rv_prix));
+                var_dump(is_string($_rv_type));
             }
+
 
             $connexion->close();
         }

@@ -40,6 +40,28 @@
         </div>
     </div>
 
+    <div class="modal fade" id="rn-reserver" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalLabel">Réserver une place</h4>
+                </div>
+                <div class="modal-body">
+                    Information:
+                    <ul>
+                        <li class="rn-list-info"></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class=" centered mt mb">
             <h1>Tous les programmes</h1>
@@ -82,7 +104,7 @@
                             <td class='list'>" .$_rv_list_info['heure']. "</td>
                             <td class='list'>" .$_rv_list_info['prix']. "</td>
                             <td>
-                                <a href='#' class='btn btn-sm rv-reserver'>
+                                <a href='#' class='btn btn-sm rv-reserver' data-toggle='modal' data-target='#rn-reserver'>
                                   Réserver une place
                                 </a>
                             </td>
@@ -95,7 +117,7 @@
             /**
              * close la connexion
              */
-            $connexion->close();
+            mysqli_close($connexion);
         ?>
 
         </div>

@@ -1,17 +1,19 @@
 /**
- * lister le lieu
+ * lister les informations concernées
  */
 $('.rv-reserver').click(function () {
     const nouvelleRes = 1;
-    console.log(nouvelleRes);
     const list_lieu = $(this).parent().parent().find('td.list');
-    console.log(list_lieu);
 
     list_lieu.each(function (i) {
-        let a = list_lieu[i].innerHTML;
-        console.log(a);
+        const a = list_lieu[i].innerHTML;
+        $('.rn-list-info').append(a + "\n");
     });
 
+    /**
+     * renvoyer la valeur de réservation
+     * @type {*|string|string}
+     */
     const id_info = list_lieu[0].innerHTML;
     console.log("aiza le " + id_info);
     $.ajax({
@@ -26,9 +28,7 @@ $('.rv-reserver').click(function () {
             console.log('erreur');
         }
     });
-
 });
-
 
 /*
 if reserver is clicked {
